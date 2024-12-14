@@ -1,0 +1,79 @@
+#homeBody{
+    background: linear-gradient(black,rgb(36, 35, 35), rgb(138, 138, 139));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#loginBody{
+    background: linear-gradient(black,rgb(31, 2, 61), rgb(78, 8, 150));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#signBody{
+    background: linear-gradient(black,rgb(19, 93, 110), rgb(11, 50, 59));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.buttonCL{
+    font-family: "consolas";
+    border-style: outset;
+    text-decoration: wavy;
+    padding: 5px;
+    border-width: 5px;
+    border-color: cadetblue;
+    background-color: cadetblue;
+    text-align: center;
+    width:200px;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.text{
+    color:white;
+    font-family: "consolas";
+}
+
+#mainTitle{
+    color:white;
+    font-family: "Press Start 2P", "consolas";
+    border-style: outset;
+    text-decoration: wavy;
+    padding: 5px;
+    border-width: 5px;
+    border-color: darkslateblue;
+    background-color:darkslateblue;
+    text-align: center;
+    font-weight: bold;
+}
+
+#loginTitle{
+    color:white;
+    font-family: "Press Start 2P", "consolas";
+    text-decoration: wavy;
+    text-align: center;
+    font-weight: bold;
+}
+
+#signTitle{
+    color:white;
+    font-family: "Press Start 2P", "consolas";
+    text-decoration: wavy;
+    text-align: center;
+    font-weight: bold;
+}
+
+#flashMsg{
+    color:white;
+    background-color: rgb(99, 26, 26);
+    font-family: "consolas";
+    font-weight: bold;
+    border-style: outset;
+    border-color: white;
+    text-align: center;
+    padding: 5px;
+    border-width: 5px;
+    width: 200px;
+
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="StyleSheet" type="text/css" href="{{ url_for('static', filename='styleSheet.css') }}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="styleSheet">
+    <title>Scrapper</title>
+
+</head>
+<body id="homeBody">
+    <center>
+    <h3 id="mainTitle">Main Menu</h3>
+    <hr>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p id="flashMsg">{{msg}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <a
+        target="_self"
+        title="Goes to the Scrapp Page!"
+        href="/checkUser/"
+    ><button class="buttonCL">Scrapp</button></a>
+    <br>
+    
+    <a
+        target="_self"
+        title="Goes to the Login Page!"
+        href="/signin/"
+    ><button class="buttonCL">Sign in</button></a>
+    <br>
+
+    <a
+        target="_self"
+        title="Goes to the Login Page!"
+        href="/login/"
+    ><button class="buttonCL">Log In</button></a>
+    <br>
+
+    </center>
+
+</body>
+</html>
