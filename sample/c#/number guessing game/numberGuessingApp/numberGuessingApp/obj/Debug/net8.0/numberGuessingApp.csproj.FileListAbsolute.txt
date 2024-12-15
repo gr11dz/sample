@@ -1,0 +1,14 @@
+F:\Coding\C#\number guessing game\numberGuessingApp\numberGuessingApp\bin\Debug\net8.0\numberGuessingApp.exe
+F:\Coding\C#\number guessing game\numberGuessingApp\numberGuessingApp\bin\Debug\net8.0\numberGuessingApp.deps.json
+F:\Coding\C#\number guessing game\numberGuessingApp\numberGuessingApp\bin\Debug\net8.0\numberGuessingApp.runtimeconfig.json
+F:\Coding\C#\number guessing game\numberGuessingApp\numberGuessingApp\bin\Debug\net8.0\numberGuessingApp.dll
+F:\Coding\C#\number guessing game\numberGuessingApp\numberGuessingApp\bin\Debug\net8.0\numberGuessingApp.pdb
+F:\Coding\C#\number guessing game\numberGuessingApp\numberGuessingApp\obj\Debug\net8.0\numberGuessingApp.GeneratedMSBuildEditorConfig.editorconfig
+F:\Coding\C#\number guessing game\numberGuessingApp\numberGuessingApp\obj\Debug\net8.0\numberGuessingApp.AssemblyInfoInputs.cache
+F:\Coding\C#\number guessing game\numberGuessingApp\numberGuessingApp\obj\Debug\net8.0\numberGuessingApp.AssemblyInfo.cs
+F:\Coding\C#\number guessing game\numberGuessingApp\numberGuessingApp\obj\Debug\net8.0\numberGuessingApp.csproj.CoreCompileInputs.cache
+F:\Coding\C#\number guessing game\numberGuessingApp\numberGuessingApp\obj\Debug\net8.0\numberGuessingApp.dll
+F:\Coding\C#\number guessing game\numberGuessingApp\numberGuessingApp\obj\Debug\net8.0\refint\numberGuessingApp.dll
+F:\Coding\C#\number guessing game\numberGuessingApp\numberGuessingApp\obj\Debug\net8.0\numberGuessingApp.pdb
+F:\Coding\C#\number guessing game\numberGuessingApp\numberGuessingApp\obj\Debug\net8.0\numberGuessingApp.genruntimeconfig.cache
+F:\Coding\C#\number guessing game\numberGuessingApp\numberGuessingApp\obj\Debug\net8.0\ref\numberGuessingApp.dll
