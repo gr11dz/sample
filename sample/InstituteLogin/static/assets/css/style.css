@@ -1,0 +1,74 @@
+:root {
+  --bs-my-dark-green: #08381c; 
+  --bs-my-teal: #083d3d; 
+  --bs-bright-red: #ff0000;
+}
+
+
+.bg-dark-green {
+  background-color: var(--bs-my-dark-green) !important;
+}
+
+.bg-teal {
+  background-color: var(--bs-my-teal) !important;
+}
+
+.color-bright-red{
+  color: var(--bs-bright-red) !important;
+}
+
+
+.invalid-feedback {
+  color: #ff4d4d; 
+  font-weight: bold;
+}
+
+.valid-feedback {
+    color: #00ff00 !important;
+    font-weight: bold;
+}
+
+.form-control:focus {
+    border-color: #000000 !important; 
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25) !important;
+}
+
+.form-check-input:focus {
+    border-color: #000000 !important;
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25) !important;
+}
+
+input[type="radio"]:invalid:not(:checked) ~ .form-check-label {
+    color: #ff4d4d !important; 
+}
+
+input[type="radio"]:valid:checked ~ .form-check-label {
+    color: #00ff00 !important;
+}
+
+input[type="checkbox"]:invalid:not(:checked) ~ .form-check-label {
+    color: #ff4d4d !important; 
+}
+
+
+input[type="checkbox"]:valid:checked ~ .form-check-label {
+    color: #00ff00 !important;
+}
+
+div.alert {
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+div.alert-success {
+    background-color: #198754 !important; 
+}
+
+
+div.alert-danger {
+    background-color: #dc3545 !important; 
+}
+
+div.alert .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}

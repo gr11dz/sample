@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Institute</title>
+    <link rel="stylesheet" href="{% static "assets/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "assets/css/style.css" %}">
+    {% block extra_css %}{% endblock  %}
+</head>
+<body class="bg-dark">
+    {% comment %} <div class="alert">
+        {% block alert %}{% endblock alert %}
+    </div> {% endcomment %}
+    <div class="content">
+        {% block content %}{% endblock content %}
+    </div>
+    <script src="{% static "assets/js/bootstrap.bundle.min.js" %}"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{% extends 'auth_layout.html' %}
+
+{% block alert %}
+
+{% endblock alert %}
+
+
+
+{% block content %}
+
+<form method="POST" class="container p-5 mt-5 bg-teal text-light rounded was-validated" style="max-width: 700px;">
+    {% csrf_token %}
+
+    <h2 class="text-center">موسسه آموزشی Unity</h2>
+    <hr class="my-4">
+
+    <h2 class="text-center">فرم ورود</h2>
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-dismissible fade show text-center" 
+                     role="alert" 
+                     style="
+                        background-color: {% if 'success' in message.tags %}#198754{% elif 'error' in message.tags %}#dc3545{% else %}#333{% endif %} !important; 
+                        color: #ffffff !important; 
+                        border: 1px solid rgba(255,255,255,0.3);
+                     ">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="filter: invert(1);"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="mb-3 p-2">
+        <label for="username" class="form-label">نام کاربری</label>
+        <input type="text" id="username" name="username" class="form-control shadow" required>
+        <div class="invalid-feedback">وارد کردن نام الزامیست</div>
+    </div>
+
+    <div class="mb-3 p-2">
+        <label for="password" class="form-label">رمز ورود</label>
+        <input type="password" id="password" name="password" class="form-control" required>
+        <div class="invalid-feedback">وارد کردن رمز ورود الزامیست</div>
+    </div>
+
+    <div class="mb-3 p-2">
+        <p>نوع کاربر</p>
+        <div class="form-check d-flex">
+            
+            <input type="radio" id="user_type" name="user_type" value="normal" class="form-check-input ms-2" required>
+            <label for="normal_user" class="form-check-label">کاربر معمولی</label>
+        </div>
+
+        <div class="form-check d-flex">
+            
+            <input type="radio" id="user_type" name="user_type" value="admin" class="form-check-input ms-2">
+            <label for="admin" class="form-check-label">ادمین</label>
+        </div>
+
+        <div class="form-check d-flex">
+            
+            <input type="radio" id="user_type" name="user_type" value="boss" class="form-check-input ms-2">
+            <label for="boss" class="form-check-label">مدیر</label>
+        </div>
+    </div>
+
+
+    <div class="mb-3 p-2">
+        <input type="submit" class="btn btn-primary" value="ورود">
+        <a href="{% url "signup" %}" class="btn btn-warning">ثبت نام</a>
+    </div>
+
+
+
+</form> 
+
+{% endblock content %}
