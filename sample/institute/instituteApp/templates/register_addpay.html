@@ -1,0 +1,280 @@
+{% extends "layout2.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link href="{% static "assets/plugins/select2/dist/css/select2.min.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= BREADCRUMB ================= -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="breadcrumb-box border shadow">
+            <ul class="breadcrumb">
+                <li><a href="#">زبان آموز</a></li>
+                <li class="active">ثبت نام زبان آموز</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- ================= FORM + INFO ================= -->
+<div class="row">
+
+    <!-- LEFT PORTLET -->
+    <div class="col-md-6">
+        <div class="portlet box border shadow">
+            <div class="portlet-heading">
+                <div class="portlet-title">
+                    <h3 class="title">
+                        <i class="icon-settings"></i>
+                        فرم واریز شهریه
+                    </h3>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="payment_form">
+
+                    <div class="form-group">
+                        <label>زبان آموز</label>
+                        <select class="form-control select2" name="student_id" required>
+                            <option selected>{{ details.fullname }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>دوره</label>
+                        <select class="form-control select2" name="course_id" required>
+                            <option selected>{{ details.course }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>سطح</label>
+                        <select class="form-control select2" name="level_id" required>
+                            <option selected>{{ details.level }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>تاریخ</label>
+                        <input type="text" class="form-control" readonly value="{{ date }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>نحوه پرداخت</label><br>
+                        <label class="radio-inline">
+                            <input type="radio" name="payment_method" value="cash" required> نقدی
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="payment_method" value="deposit"> واریز حساب
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="payment_method" value="card"> کارت
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="payment_method" value="cheque"> چک
+                        </label>
+                    </div>
+
+                    <div id="cheque_fields" style="display: none; margin-top: 15px;">
+                        <div class="form-group row">
+                            <label>نام بانک</label>
+                            <select class="form-control select2" name="bankname" id="bankname">
+                                <option value="" disabled selected>انتخاب کنید</option>
+                                {% for bk in bank %}
+                                    <option value="{{bk.bk_id}}">{{bk.bk_name}}</option>
+                                {% endfor %} 
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <label>صاحب حساب</label>
+                            <input type="text" name="owner" id="owner" placeholder="نام صاحب حساب" class="form-control cheque-field">
+                        </div>
+                        <div class="form-group row">
+                            <label>شماره چک</label>
+                            <input type="text" name="cheque_number" id="cheque_number" placeholder="شماره چک" class="form-control cheque-field">
+                        </div>
+                        <div class="form-group row">
+                            <label>شعبه</label>
+                            <input type="text" name="bank_fork" id="bank_fork" placeholder="شعبه" class="form-control cheque-field">
+                        </div>
+                        <div class="form-group row">
+                            <label>کد شعبه</label>
+                            <input type="text" name="bank_forkcode" id="bank_forkcode" placeholder="کد شعبه" class="form-control cheque-field">
+                        </div>
+                        <div class="form-group row">
+                            <label>تاریخ سررسید</label>
+                            <input type="text" name="paydate" id="paydate" class="form-control cheque-field">
+                        </div>
+                        <div class="form-group row">
+                            <label>مبلغ چک</label>
+                            <input type="text" name="cheque_price" id="cheque_price" class="form-control cheque-field">
+                        </div>
+                        <div class="form-group row">
+                            <label>توضیحات</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>پرداخت شده</label>
+                        <input type="text" class="form-control" name="paid" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-info btn-round">
+                        ذخیره
+                    </button>
+                    <a href="{% url "registerlist" %}" class="btn btn-warning btn-round">
+                        بازگشت
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT PORTLET -->
+    <div class="col-md-6">
+        <div class="portlet box border shadow">
+            <div class="portlet-heading">
+                <div class="portlet-title">
+                    <h3 class="title">
+                        <i class="icon-settings"></i>
+                        اطلاعات شهریه
+                    </h3>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <p><strong>مبلغ تخفیف:</strong> {{ details.discount }}</p>
+                <p><strong>شهریه قابل پرداخت:</strong> {{ details.fee }}</p>
+                <p><strong>نحوه پرداخت:</strong> {{ details.paymethod }}</p>
+                <p><strong>پرداخت شده در ابتدا:</strong> {{ details.paid }}</p>
+                <p><strong>مانده:</strong> {{ details.remaining }}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ================= TABLE ================= -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet box border shadow">
+            <div class="portlet-heading">
+                <div class="portlet-title">
+                    <h3 class="title">اطلاعات ثبت نام زبان آموزان</h3>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped" id="data-table">
+                        <thead>
+                            <tr>
+                                <th>ردیف</th>
+                                <th>دوره</th>
+                                <th>سطح</th>
+                                <th>روش پرداخت</th>
+                                <th>تاریخ</th>
+                                <th>مبلغ واریزی</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for iter in table %}
+                            <tr>
+                                <td>
+                                    {{ forloop.counter }}
+                                    <form method="POST" action="" style="display:inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="form_type" value="delete_form">
+                                        <input type="hidden" name="payedid" value="{{ iter.payedid }}">
+                                        <button type="submit" class="btn btn-danger btn-sm">حذف</button>
+                                    </form>
+                                </td>
+                                <td>{{ iter.course }}</td>
+                                <td>{{ iter.level }}</td>
+                                <td>{{ iter.paymethod }}</td>
+                                <td>{{ iter.date }}</td>
+                                <td>{{ iter.price }}</td>
+                                <td></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <td colspan="4"></td>
+                                <td>جمع پرداختی</td>
+                                <td>{{ payed_total }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"></td>
+                                <td>جمع پرداختی از قبل</td>
+                                <td>{{ sum.paid }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"></td>
+                                <td>جمع کل</td>
+                                <td>{{ total }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"></td>
+                                <td>مانده شهریه</td>
+                                <td>{{ sum.remaining }}</td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+{% comment %} <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> {% endcomment %}
+<script src="{% static 'assets/plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/plugins/select2/dist/js/select2.full.min.js' %}"></script>
+<script src="{% static 'assets/plugins/select2/dist/js/i18n/fa.js' %}"></script>
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script> {% endcomment %}
+
+<script>
+$(function () {
+
+    $('.select2').select2({
+        width: '100%',
+        dir: "rtl",
+        minimumResultsForSearch: 0
+    });
+
+    $('input[name="payment_method"]').on('change', function () {
+        if (this.value === "cheque") {
+            $("#cheque_fields").slideDown();
+            $(".cheque-field").attr("required", true);
+        } else {
+            $("#cheque_fields").slideUp();
+            $(".cheque-field").removeAttr("required");
+        }
+        calculateRemaining();
+    });
+
+});
+</script>
+<script src="{% static  "assets/plugins/data-table/js/jquery.dataTables.min.js"%}"></script>
+<script src="{% static "assets/plugins/data-table/js/dataTables.bootstrap.js"%}"></script>
+{% comment %} <script src="{% static  "assets/js/pages/datatable.js"%}"></script> {% endcomment %}
+<script>
+$(document).ready(function() {
+    $('#data-table').DataTable({
+        ordering: false
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,227 @@
+{%extends "layout2.html" %}
+{%load static%}
+
+{%block extra_css%}
+<link href="{% static "assets/plugins/select2/dist/css/select2.min.css"%}" rel="stylesheet">
+{%endblock%}
+
+{%block content%}
+    <div class="row">                    
+        <!-- BEGIN BREADCRUMB -->
+        <div class="col-md-12">
+            <div class="breadcrumb-box border shadow"> 
+                <ul class="breadcrumb">
+                    <li><a href="dashboard.html">زبان آموز</a></li>                              
+                    <li class="active">ثبت نمره زبان آموز</li>                            
+                </ul>
+            </div><!-- /.breadcrumb-box -->
+        </div><!-- /.col-md-12 -->
+        <!-- END BREADCRUMB -->                    
+        
+        <div class="col-md-6">
+            <div class="portlet box border shadow">
+                <div class="portlet-heading">
+                    <div class="portlet-title">
+                        <h3 class="title">                                        
+                            <i class="icon-settings"></i>
+                            فرم  اطلاعات زبان آموز
+                        </h3>
+                    </div><!-- /.portlet-title -->
+                    <div class="buttons-box">
+                        <a class="btn btn-sm btn-default btn-round btn-fullscreen" rel="tooltip" title="تمام صفحه" href="#">
+                            <i class="icon-size-fullscreen"></i>
+                        </a>
+                        <a class="btn btn-sm btn-default btn-round btn-collapse" rel="tooltip" title="کوچک کردن" href="#">
+                            <i class="icon-arrow-up"></i>
+                        </a>
+                    </div><!-- /.buttons-box -->
+                </div><!-- /.portlet-heading -->
+        <form method="POST" action="">
+        {% csrf_token %}
+                    <div class="portlet-body">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label>زبان آموز </label>
+                                    <select class="form-control select2" name='student_id' required>
+                                        {% for s in student %}
+                                            <option value="{{s.studentid}}"
+                                            {% if s.studentid == score.studentid %} selected {% endif %}>
+                                                {{s.studentname}} {{s.studentfamily}}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div><!-- /.form-group -->
+                                <div class="form-group">
+                                    <label>دوره</label>
+                                    <select class="form-control select2" name="course_id" required>
+                                        {% for crs in course %}
+                                            <option value= "{{crs.courseid}}"
+                                            {% if crs.courseid == score.courseid %}checked{% endif %}>
+                                            {{crs.coursecaption}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div><!-- /.form-group -->
+                                <div class="form-group">
+                                    <label>سطح</label>
+                                    <select class="form-control select2" name="level_id" required>
+                                        {% for lvl in level %}
+                                            <option value="{{lvl.levelid}}"
+                                            {% if lvl.levelid == score.levelid %}checked{% endif %}>
+                                            {{lvl.leveltitle}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div><!-- /.form-group -->
+                                <div class="form-group row">
+                                    <label class="col-sm-3">Card Number:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="cardnumber" id="cardnumber" required value="{{score.cardnumber}}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3">Room:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="room" id="room" required value="{{score.room}}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3">Hour:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="hour" id="hour" required value="{{score.hour}}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3">Days:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="days" id="days" required value="{{score.days}}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3">Proceed to higher grade:</label>
+                                    <div class="col-sm-9">
+                                        <input type="checkbox" class="form-control" name="proceed" id="proceed"
+                                        {% if score.proceed %}checked{% endif %}>
+                                    </div>
+                                </div>
+                            </div><!-- /.form-body -->
+                    </div><!-- /.portlet-body -->
+            </div><!-- /.portlet -->
+        </div><!-- /.col-md-6 -->
+            <div class="col-md-6">
+                <div class="portlet box border shadow">
+                    <div class="portlet-heading">
+                        <div class="portlet-title">
+                            <h3 class="title">                                        
+                                <i class="icon-settings"></i>
+                                فرم نمره
+                            </h3>
+                        </div><!-- /.portlet-title -->
+                        <div class="buttons-box">
+                            <a class="btn btn-sm btn-default btn-round btn-fullscreen" rel="tooltip" title="تمام صفحه" href="#">
+                                <i class="icon-size-fullscreen"></i>
+                            </a>
+                            <a class="btn btn-sm btn-default btn-round btn-collapse" rel="tooltip" title="کوچک کردن" href="#">
+                                <i class="icon-arrow-up"></i>
+                            </a>
+                        </div><!-- /.buttons-box -->
+                    </div><!-- /.portlet-heading -->
+                    <div class="portlet-body">
+                            <div class="form-body">
+                                <div class="form-group row">
+                                    <label class="col-sm-3">Oral:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="oral" id="oral" required value="{{score.oral}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="form-group row">
+                                    <label class="col-sm-3">Quiz:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="quiz" id="quiz" required value="{{score.quiz}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="form-group row">
+                                    <label class="col-sm-3">Class:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="class" id="class" required value="{{score.class}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="form-group row">
+                                    <label class="col-sm-3">Final:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="final" id="final" required value="{{score.final}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="form-group row">
+                                    <label class="col-sm-3">Total:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="total" id="total" value="{{score.total}}">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-info btn-round">
+                                    <i class="icon-check"></i>
+                                    ذخیره
+                                </button>
+                                <a href="{% url "scorelist"%}" class="btn btn-primary btn-warning btn-round">
+                                    <i class="icon-close"></i>
+                                    بازکشت
+                                </a>
+                            </div><!-- /.form-actions -->
+                    </div><!-- /.portlet-body -->
+                </div><!-- /.portlet -->
+        </form>
+            </div><!-- /.col-md-6 -->                
+    </div><!-- /.row -->
+{%endblock%}
+
+{% block scripts %}
+{% comment %} <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> {% endcomment %}
+<script src="{% static 'assets/plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/plugins/select2/dist/js/select2.full.min.js' %}"></script>
+<script src="{% static 'assets/plugins/select2/dist/js/i18n/fa.js' %}"></script>
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script> {% endcomment %}
+
+<script>
+$(function () {
+
+    $('.select2').select2({
+        width: '100%',
+        dir: "rtl",
+        minimumResultsForSearch: 0
+    });
+
+});
+function updateTotal() {
+    // Read values safely (convert empty or invalid to 0)
+    const oral  = parseInt($("#oral").val())  || 0;
+    const quiz  = parseInt($("#quiz").val())  || 0;
+    const cls   = parseInt($("#class").val()) || 0;
+    const final = parseInt($("#final").val()) || 0;
+
+    const total = oral + quiz + cls + final;
+
+    $("#total").val(total);
+}
+
+// Trigger on typing or changing
+$("#oral, #quiz, #class, #final").on("input", updateTotal);
+
+$("#total").on("input", function () {
+    updateTotal();  // Immediately correct the value
+});
+
+// Safety: recalc before submit
+$("form").on("submit", updateTotal);
+</script>
+
+{% endblock %}

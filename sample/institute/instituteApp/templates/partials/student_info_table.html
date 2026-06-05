@@ -1,0 +1,97 @@
+<div class="student-info">
+
+    <!-- Register Table -->
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ردیف</th>
+                <th>سطح</th>
+                <th>تاریخ</th>
+                <th>شهریه</th>
+                <th>اقلام آموزشی</th>
+                <th>تخفیف</th>
+                <th>پرداخت شده</th>
+                <th>مانده</th>
+                <th>نمره قبولی</th>
+                <th>چاپ کارنامه</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for r in register %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{ r.level }}</td>
+                <td>{{ r.date }}</td>
+                <td>{{ r.fee}}</td>
+                <td>{{ r.inventoryPrice }}</td>
+                <td>
+                    {% if r.discount != '—' %}
+                        {{ r.discount }}
+                    {% else %}
+                       0
+                    {% endif %}
+                </td>
+                <td>{{ r.paid }}</td>
+                <td>{{ r.remaining }}</td>
+                <td>
+                    {% if r.mark %}
+                        ✔{{ r.mark }}
+                    {% else %}
+                        وارد نشده
+                    {% endif %}
+                </td>
+                <td>
+                {% if r.mark %}
+                    چاپ کارنامه
+                {% else %}
+                    -
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+
+            <tr>
+                <td>مجموع ستون</td>
+                <td></td>
+                <td></td>
+                <td>{{ sum.fee }}</td>
+                <td>{{ sum.inventoryPrice }}</td>
+                <td>{{ sum.discount }}</td>
+                <td>{{ sum.paid }}</td>
+                <td>{{ sum.remaining }}</td>
+                <td></td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <span class="input-group-btn">
+                        <a href="{% url "registeraddpay" sum.last_registerid %}" class="btn btn-primary">
+                            ثبت پرداختی
+                        </a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <span class="input-group-btn">
+                        <a href="{% url "registeradd" student.id %}" class="btn btn-primary">
+                            ثبت نام جدید
+                        </a>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>نام و نام خانوادگی:</strong> {{ student.fullname }}</p>
+    <p><strong>کدملی:</strong> {{ student.nationalID }}</p>
+    <p><strong>تلفن:</strong> {{ student.phone }}</p>
+    <p><strong>همراه مادر:</strong> {{ student.momPhone }}</p>
+    <p><strong>همراه پدر:</strong> {{ student.dadPhone }}</p>
+
+    <hr>
+
+</div>

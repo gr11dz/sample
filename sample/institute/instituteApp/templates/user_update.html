@@ -1,0 +1,191 @@
+{%extends "layout2.html"%}
+
+{%load static%}
+{%block content%}
+
+<!-- BEGIN HEADER -->          
+<!-- BEGIN WRAPPER -->
+
+<div class="row">                    
+    <!-- BEGIN BREADCRUMB -->
+    <div class="col-md-12">
+        <div class="breadcrumb-box border shadow"> 
+            <ul class="breadcrumb">
+                <li><a href="#">پروفایل</a></li>                                
+                <li class="active">ویرایش مشخصات</li>                            
+            </ul>
+        </div><!-- /.breadcrumb-box -->
+    </div><!-- /.col-md-12 -->
+    <!-- END BREADCRUMB -->                    
+
+    <div class="col-md-12">
+        <div class="portlet box border shadow">
+            <div class="portlet-heading">
+                <div class="portlet-title">
+                    <h3 class="title">                                        
+                        <i class="icon-frane"></i>
+                        فرم عمومی
+                    </h3>
+                </div><!-- /.portlet-title -->
+                <div class="buttons-box">
+                    <a class="btn btn-sm btn-default btn-round btn-code" rel="tooltip" title="کدها" href="#">
+                        <i class="fa fa-code"></i>
+                    </a>
+                    <div class="code-modal hide">
+                    </div>
+                    <a class="btn btn-sm btn-default btn-round btn-fullscreen" rel="tooltip" title="تمام صفحه" href="#">
+                        <i class="icon-size-fullscreen"></i>
+                    </a>
+                    <a class="btn btn-sm btn-default btn-round btn-collapse" rel="tooltip" title="کوچک کردن" href="#">
+                        <i class="icon-arrow-up"></i>
+                    </a>
+                </div><!-- /.buttons-box -->
+            </div><!-- /.portlet-heading -->
+            <div class="portlet-body">
+                <form method="POST" action="">
+                    {%csrf_token%}
+                    <div class="form-body">
+                        <div class="form-group row">
+                            <label class="col-sm-3">نام کاربری</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="username" id="username" required
+                                value="{{old.username}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3">نام و نام خانوداگی</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="fullname" id="fullname" required
+                                value="{{old.name}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3">شماره همراه</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="phone" id="phone" required
+                                value="{{old.phone}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3">تلفن ثابت</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="phone2" id="phone2" required
+                                value="{{old.phone2}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3">رمز عبور قدیم</label>
+                            <div class="col-sm-3">
+                                <input type="password" class="form-control" name="password" id="password" required
+                                >
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3">ایمیل</label>
+                            <div class="col-sm-3">
+                                <input type="email" class="form-control" name="email" id="email" required
+                                value="{{old.email}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3">سرپرست</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="sarparast" id="sarparast">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>استان</label>
+                            <select class="form-control select2" name="province" required>
+                                {% for pv in provinces %}
+                                <option value="{{pv.name}}"
+                                {% if old.state == pv.name %}selected{% endif %}>{{pv.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3">شهرستان</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="city" id="city" required
+                                value="{{old.city}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3">نشانی</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="address" id="address" required
+                                value="{{old.address}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3">رمز عبور جدید</label>
+                            <div class="col-sm-3">
+                                <input type="password" class="form-control" name="password2" id="password2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                           <label>نام بانک</label>
+                            <select class="form-control select2" name="bankname" id="bankname">
+                                <option value="" disabled selected>انتخاب کنید</option>
+                                {% for bk in bank %}
+                                    <option value="{{bk.bk_name}}"
+                                        {% if bk.bk_name == old.bankname %} selected {% endif %}>
+                                    {{bk.bk_name}}</option>
+                                {% endfor %} 
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3">شماره کارت</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="cardnumber" id="cardnumber" required
+                                value="{{old.cardnumber}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3">شماره شبا</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="sheba" id="sheba" required
+                                value="{{old.sheba}}">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-info btn-round">
+                                <i class="icon-check"></i>
+                                ذخیره
+                            </button>
+                            <a href="{% url "inventoryindex" %}" class="btn btn-primary btn-warning round">
+                                <i class="icon-close"></i>
+                                بازگشت
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div><!-- /.portlet-body -->
+        </div><!-- /.portlet -->
+    </div><!-- /.col-md-12 -->     
+
+       
+</div><!-- /.row -->
+
+<div class="row footer-container">
+    <div class="col-md-12">
+        <div class="copyright">
+            <p class="pull-right">
+                کلیه حقوق آموزشگاه زبان محفوظ می باشد و کپی برداری از آن به هیچ عنوان جایز نیست.
+            </p>
+            <p class="pull-left ltr tahoma">
+                <span>©</span>
+                <a href="http://ioplus.ir">ioplus</a>
+            </p>
+        </div><!-- /.copyright -->
+    </div><!-- /.col-md-12 -->
+</div><!-- /.row -->
+<!-- BEGIN PAGE JAVASCRIPT -->
+{%block scripts%}
+<script src="{% static  "assets/plugins/data-table/js/jquery.dataTables.min.js"%}"></script>
+<script src="{% static "assets/plugins/data-table/js/dataTables.bootstrap.js"%}"></script>
+<script src="{% static  "assets/js/pages/datatable.js"%}"></script>
+
+
+{%endblock%}
+<!-- END PAGE JAVASCRIPT -->    
+{%endblock%}
